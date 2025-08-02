@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- COLORS FOR ROBOT VISUALIZATION IN SIMULATION -->
+
     <material name="red">
         <color rgba="1.0 0.0 0.0 1.0"/>
     </material>
@@ -17,23 +19,99 @@
         <color rgba="0.0 0.0 0.0 1.0"/>
     </material>
 
+    <!-- CONSTANT DEFNITIONS -->
+
+    <xacro:property name="robot_size_x" value="0.5"/>
+    <xacro:property name="robot_size_y" value="0.3"/>
+    <xacro:property name="robot_size_z" value="0.1"/>
+
+    <xacro:property name="radius_wheel" value="0.1" />
+    <xacro:property name="height_wheel" value="0.05" />
+    
+    <xacro:property name="idler_wheel_radius" value="0.05" />
+
+    <!-- BASE LINK -->
+
     <link name="base_link">
         
     </link>
 
-    <joint name="robot_join" type="fixed">
+    <!-- ROBOT JOINT (BASE LINK - ROBOT'S FRAME) -->
+
+    <joint name="robot_joint" type="fixed">
         <parent link="base_link"/>
         <child link="robot_link"/>
-        <origin xyz="-0.1 0.0  0.0"/>
+        <origin xyz="${-radius_wheel} 0.0  0.0"/>
     </joint>
+
+    <!-- ROBOT LINK (ROBOT'S FRAME) -->
 
     <link name="robot_link">
         <visual>
-            <origin xyz="0.25 0.0 0.05"/>
+            <origin xyz="${robot_size_x / 2} 0.0 ${robot_size_z / 2}"/>
             <geometry>
-                <box size="0.5 0.3 0.1"/>
+                <box size="${robot_size_x} ${robot_size_y} ${robot_size_z}"/>
             </geometry>
             <material name="red"/>
+        </visual>
+    </link>
+
+    <!-- LEFT WHEEL JOINT-->
+
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel_link"/>
+        <origin xyz="0.0 ${robot_size_y / 2 + height_wheel / 2} 0.05" rpy="${-pi / 2} 0.0 0.0"/>
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- LEFT WHEEL LINK -->
+
+    <link name="left_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${radius_wheel}" length="${height_wheel}"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <!-- RIGHT  WHEEL JOINT-->
+
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel_link"/>
+        <origin xyz="0.0 ${-robot_size_y / 2 - height_wheel / 2} 0.05" rpy="${pi / 2} 0.0 0.0"/>
+        <axis xyz="0.0 0.0 -1.0"/>
+    </joint>
+
+    <!-- RIGHT WHEEL LINK -->
+
+    <link name="right_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${radius_wheel}" length="${height_wheel}"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <!-- IDLER WHEEL JOINT -->
+
+    <joint name="idler_wheel_joint" type="fixed">
+        <parent link="robot_link"/>
+        <child link="idler_wheel_link"/>
+        <origin xyz="${robot_size_x - 0.1} 0.0 0.0"/>
+    </joint>
+
+    <!-- IDLER WHEEL LINK -->
+
+    <link name="idler_wheel_link">
+        <visual>
+            <geometry>
+                <sphere radius="${idler_wheel_radius}"/>
+            </geometry>
+            <material name="black"/>
         </visual>
     </link>
 
