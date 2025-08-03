@@ -1,4 +1,5 @@
 /home/saul/vineyard_ws/src/vineyard-mybot/install/vineyard-mybot/share/vineyard-mybot/config/empty.yaml
+/home/saul/vineyard_ws/src/vineyard-mybot/install/vineyard-mybot/share/vineyard-mybot/config/robot_view.rviz
 /home/saul/vineyard_ws/src/vineyard-mybot/install/vineyard-mybot/share/vineyard-mybot/description/constants.xacro
 /home/saul/vineyard_ws/src/vineyard-mybot/install/vineyard-mybot/share/vineyard-mybot/description/inertial_properties.xacro
 /home/saul/vineyard_ws/src/vineyard-mybot/install/vineyard-mybot/share/vineyard-mybot/description/materials.xacro
