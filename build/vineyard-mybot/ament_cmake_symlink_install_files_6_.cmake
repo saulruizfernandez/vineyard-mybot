@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_files("/home/saul/vineyard_ws/src/vineyard-mybot" FILES "/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/vineyard-mybot")

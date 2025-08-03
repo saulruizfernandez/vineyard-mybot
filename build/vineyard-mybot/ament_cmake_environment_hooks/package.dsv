@@ -1,0 +1,4 @@
+source;share/vineyard-mybot/local_setup.bash
+source;share/vineyard-mybot/local_setup.dsv
+source;share/vineyard-mybot/local_setup.sh
+source;share/vineyard-mybot/local_setup.zsh

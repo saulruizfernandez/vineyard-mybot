@@ -1,0 +1,9 @@
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/uninstall.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/vineyard-mybot_uninstall.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/test.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/edit_cache.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/rebuild_cache.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/list_install_components.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/install.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/install/local.dir
+/home/saul/vineyard_ws/src/vineyard-mybot/build/vineyard-mybot/CMakeFiles/install/strip.dir
