@@ -10,6 +10,8 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
 from launch.actions import AppendEnvironmentVariable
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
@@ -17,6 +19,13 @@ def generate_launch_description():
     package_name = 'vineyard-mybot'
     world_file = 'empty.sdf'
     ros_gz_sim = get_package_share_directory('ros_gz_sim')
+    robot_controllers = PathJoinSubstitution(
+    [
+        FindPackageShare("vineyard-mybot"),
+        "config",
+        "my_controllers.yaml",
+    ]
+)
 
     return LaunchDescription([
         IncludeLaunchDescription(
@@ -41,5 +50,21 @@ def generate_launch_description():
             executable='create',
             arguments=['-topic', 'robot_description', '-entity', 'mybot'],
             output='screen'
+        ),
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["joint_state_broadcaster"],
+        ),
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=[
+                "diffbot_base_controller",
+                "--param-file",
+                robot_controllers,
+                "--controller-ros-args",
+                "-r /diffbot_base_controller/cmd_vel:=/cmd_vel",
+            ],
         )
     ])
