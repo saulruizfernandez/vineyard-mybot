@@ -35,7 +35,7 @@
                 <box size="${robot_size_x} ${robot_size_y} ${robot_size_z}"/>
             </geometry>
         </collision>
-        <xacro:box_inertia m="5" w="${robot_size_x}" d="${robot_size_y}" h="${robot_size_z}"/>
+        <xacro:box_inertia m="3.5" w="${robot_size_x}" d="${robot_size_y}" h="${robot_size_z}"/>
     </link>
 
     <!-- LEFT WHEEL JOINT-->
@@ -61,16 +61,15 @@
                 <cylinder radius="${radius_wheel}" length="${height_wheel}"/>
             </geometry>
         </collision>
-        <xacro:cylinder_inertia m="0.5" r="${radius_wheel}" h="${height_wheel}"/>
+        <xacro:cylinder_inertia m="1.5" r="${radius_wheel}" h="${height_wheel}"/>
     </link>
 
-    <!-- RIGHT  WHEEL JOINT-->
-
+    <!-- RIGHT WHEEL JOINT-->
     <joint name="right_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel_link"/>
-        <origin xyz="0.0 ${-robot_size_y / 2 - height_wheel / 2} 0.05" rpy="${pi / 2} 0.0 0.0"/>
-        <axis xyz="0.0 0.0 -1.0"/>
+        <origin xyz="0.0 ${-robot_size_y / 2 - height_wheel / 2} 0.05" rpy="${-pi / 2} 0.0 0.0"/>
+        <axis xyz="0.0 0.0 1.0"/>
     </joint>
 
     <!-- RIGHT WHEEL LINK -->
@@ -88,7 +87,7 @@
             </geometry>
             <material name="black"/>
         </collision>
-        <xacro:cylinder_inertia m="0.5" r="${radius_wheel}" h="${height_wheel}"/>
+        <xacro:cylinder_inertia m="1.5" r="${radius_wheel}" h="${height_wheel}"/>
     </link>
 
     <!-- IDLER WHEEL JOINT -->

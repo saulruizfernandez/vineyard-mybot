@@ -37,4 +37,13 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+find_package(rclpy REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
+install(PROGRAMS
+  scripts/twist_to_twiststamped.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+
 ament_package()

@@ -2,58 +2,45 @@
 
 controller_manager:
   ros__parameters:
-    update_rate: 10  # Hz
+    update_rate: 50  # Hz - Aumentado para mejor respuesta
     use_sim_time: true
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
+    diffbot_base_controller:
+      type: diff_drive_controller/DiffDriveController
+
 diffbot_base_controller:
   ros__parameters:
-    type: diff_drive_controller/DiffDriveController
-
     left_wheel_names: ["left_wheel_joint"]
     right_wheel_names: ["right_wheel_joint"]
 
-    wheel_separation: 0.30
+    wheel_separation: 0.35  # Corregido según geometría real
     wheel_radius: 0.10
 
-    # wheel_separation_multiplier: 1.0
-    # left_wheel_radius_multiplier: 1.0
-    # right_wheel_radius_multiplier: 1.0
-
-    use_stamped_vel: false
+    use_stamped_vel: false  # Simplificado
 
     publish_rate: 50.0
-    # odom_frame_id: odom
+    odom_frame_id: odom
     base_frame_id: base_link
-    # pose_covariance_diagonal : [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
-    # twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
 
-    # open_loop: true
-    # enable_odom_tf: true
+    open_loop: false  # Usar retroalimentación para mejor control
+    enable_odom_tf: true
 
-    # cmd_vel_timeout: 0.5
-    #publish_limited_velocity: true
-    #velocity_rolling_window_size: 10
+    cmd_vel_timeout: 1.0  # Más tiempo antes de parar
+    publish_limited_velocity: false  # Deshabilitar limitación
+    velocity_rolling_window_size: 1  # Sin filtrado, respuesta inmediata
 
-    # Velocity and acceleration limits
-    # Whenever a min_* is unspecified, default to -max_*
-    # linear.x.has_velocity_limits: true
-    # linear.x.has_acceleration_limits: true
-    # linear.x.has_jerk_limits: false
-    # linear.x.max_velocity: 1.0
-    # linear.x.min_velocity: -1.0
-    # linear.x.max_acceleration: 1.0
-    # linear.x.max_jerk: 0.0
-    # linear.x.min_jerk: 0.0
+    # Límites de velocidad y aceleración más permisivos para respuesta inmediata
+    linear.x.has_velocity_limits: true
+    linear.x.has_acceleration_limits: false  # Sin límites de aceleración
+    linear.x.max_velocity: 2.0
+    linear.x.min_velocity: -2.0
 
-    # angular.z.has_velocity_limits: true
-    # angular.z.has_acceleration_limits: true
-    # angular.z.has_jerk_limits: false
-    # angular.z.max_velocity: 1.0
-    # angular.z.min_velocity: -1.0
-    # angular.z.max_acceleration: 1.0
-    # angular.z.min_acceleration: -1.0
-    # angular.z.max_jerk: 0.0
-    # angular.z.min_jerk: 0.0
+    angular.z.has_velocity_limits: true
+    angular.z.has_acceleration_limits: false  # Sin límites de aceleración
+    angular.z.max_velocity: 4.0
+    angular.z.min_velocity: -4.0
