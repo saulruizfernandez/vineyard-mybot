@@ -5,13 +5,13 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, AppendEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
-from launch.actions import AppendEnvironmentVariable
 from launch.substitutions import PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.actions import SetParameter
 
 
 def generate_launch_description():
@@ -25,9 +25,11 @@ def generate_launch_description():
         "config",
         "my_controllers.yaml",
     ]
-)
+    )
+    bridge_params = os.path.join(get_package_share_directory(package_name), 'config', 'gz_bridge.yaml')
 
     return LaunchDescription([
+        SetParameter(name='use_sim_time', value=True),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(
                 get_package_share_directory(package_name),'launch','rsp.launch.py'
@@ -65,6 +67,15 @@ def generate_launch_description():
                 robot_controllers,
                 "--controller-ros-args",
                 "-r /diffbot_base_controller/cmd_vel:=/cmd_vel",
+            ],
+        ),
+        Node(
+            package="ros_gz_bridge",
+            executable="parameter_bridge",
+            arguments=[
+                '--ros-args',
+                '-p',
+                f'config_file:={bridge_params}',
             ],
         )
     ])

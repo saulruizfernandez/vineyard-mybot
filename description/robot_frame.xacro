@@ -113,7 +113,12 @@
             </geometry>
             <material name="black"/>
         </collision>
-        <xacro:sphere_inertia m="0.5" r="${idler_wheel_radius}"/>
+        <xacro:sphere_inertia m="0.05" r="${idler_wheel_radius}"/>
     </link>
+
+    <gazebo reference="idler_wheel_link">
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
 
 </robot>
