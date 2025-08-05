@@ -17,7 +17,11 @@ from launch_ros.actions import SetParameter
 def generate_launch_description():
 
     package_name = 'vineyard-mybot'
-    world_file = 'empty.sdf'
+    world_file = PathJoinSubstitution([
+        FindPackageShare(package_name),
+        "worlds",
+        "test_world.sdf",
+    ])
     ros_gz_sim = get_package_share_directory('ros_gz_sim')
     robot_controllers = PathJoinSubstitution(
     [
