@@ -44,6 +44,10 @@ install(PROGRAMS
   scripts/twist_to_twiststamped.py
   DESTINATION lib/${PROJECT_NAME}
 )
+install(PROGRAMS
+  scripts/odom_relay.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 
 ament_package()

@@ -117,7 +117,7 @@
       <self_collide>false</self_collide>
     </model>
     <model name='box_0'>
-      <pose>4.21810007095337 -5.9797301292419434 0.49999942061812713 -5.9148040592138173e-20 3.781694370423946e-19 0.31815313272520868</pose>
+      <pose>4.21810007095337 -5.9797301292419434 0.49999942061812713 -5.9148040592138185e-20 3.781694370423946e-19 0.31815313272520857</pose>
       <link name='box_link'>
         <inertial>
           <inertia>
@@ -357,6 +357,46 @@
       <static>false</static>
       <self_collide>false</self_collide>
     </model>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall</name>
+      <pose>2.6834072814281846 -8.8672603154087888 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_1</name>
+      <pose>2.4460668963892118 7.8225436269743369 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_0</name>
+      <pose>-1.1013506650924683 4.4368510246276855 0 0 0 -1.5754599640831775</pose>
+    </include>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_0_1</name>
+      <pose>-1.1794531979485647 -2.5155787334127151 0 0 0 -1.5754599640831775</pose>
+    </include>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_0_1_1</name>
+      <pose>-1.1519224284936076 -8.2119480863754806 0 0 0 -1.5754599640831775</pose>
+    </include>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_0_2</name>
+      <pose>5.9304179066125702 4.3235063137830911 0 0 0 -1.5754599640831775</pose>
+    </include>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_0_2_1</name>
+      <pose>5.8610388927398205 -2.5007823719640507 0 0 0 -1.5754599640831775</pose>
+    </include>
+    <include>
+      <uri>file:///home/saul/.gz/fuel/fuel.gazebosim.org/openrobotics/models/grey wall/3</uri>
+      <name>grey_wall_0_2_1_1</name>
+      <pose>5.7938496407079949 -7.3504901778108191 0 0 0 -1.5754599640831775</pose>
+    </include>
     <light name='sun' type='directional'>
       <pose>0 0 10 0 0 0</pose>
       <cast_shadows>true</cast_shadows>
