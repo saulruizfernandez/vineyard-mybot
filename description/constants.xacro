@@ -10,6 +10,6 @@
     <xacro:property name="radius_wheel" value="0.033" />
     <xacro:property name="height_wheel" value="0.026" />
     
-    <xacro:property name="idler_wheel_radius" value="0.15" />
+    <xacro:property name="idler_wheel_radius" value="0.015" />
 
 </robot>
