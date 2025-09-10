@@ -20,7 +20,7 @@
             </geometry>
             <material name="green"/>
         </collision>
-        <xacro:cylinder_inertia m="0.1" r="0.02" h="0.2"/>
+        <xacro:cylinder_inertia m="0.1" r="0.02" h="0.1"/>
     </link>
 
     <joint name="lidar_joint" type="fixed">
