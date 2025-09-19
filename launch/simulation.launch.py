@@ -1,4 +1,4 @@
-# https://docs.ros.org/en/kilted/Tutorials/Intermediate/Launch/Creating-Launch-Files.html
+# https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html
 # Open Gazebo: $ gz sim
 # Spawn robot in Gazebo: $ ros2 run ros_gz_sim create -topic robot_description -entity mybot
 
