@@ -34,6 +34,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         SetParameter(name='use_sim_time', value=True),
+        SetParameter(name='clock_topic', value='/clock'),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(
                 get_package_share_directory(package_name),'launch','rsp.launch.py'

@@ -16,8 +16,8 @@ diffbot_base_controller:
     left_wheel_names: ["left_wheel_joint"]
     right_wheel_names: ["right_wheel_joint"]
 
-    wheel_separation: 0.35  # Corregido según geometría real
-    wheel_radius: 0.10
+    wheel_separation: 0.176  # robot_size_y (0.15) + height_wheel (0.026) = 0.176
+    wheel_radius: 0.033
 
     use_stamped_vel: false  # Simplificado
 
@@ -28,6 +28,9 @@ diffbot_base_controller:
     twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
 
     open_loop: false  # Usar retroalimentación para mejor control
+    
+    # Sincronización crítica
+    use_sim_time: true
     enable_odom_tf: true
 
     cmd_vel_timeout: 1.0  # Más tiempo antes de parar

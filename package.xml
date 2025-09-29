@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>vineyard_mybot</name>
+  <name>vineyard-mybot</name>
   <version>0.0.0</version>
   <description>Vineyard robot package for ROS Jazzy</description>
   <maintainer email="my_email@email.com">MY NAME</maintainer>

@@ -24,7 +24,7 @@ class TwistToTwistStamped(Node):
     def twist_callback(self, msg: Twist):
         stamped_msg = TwistStamped()
         stamped_msg.header.stamp = self.get_clock().now().to_msg()
-        stamped_msg.header.frame_id = 'base_link'  # O el frame que necesites
+        stamped_msg.header.frame_id = 'base_footprint'  # Frame correcto para comandos de velocidad
         stamped_msg.twist = msg
         self.publisher.publish(stamped_msg)
 

@@ -131,4 +131,25 @@
         <mu2 value="0.001"/>
     </gazebo>
 
+    <!-- Fricción para ruedas principales - CRÍTICO para evitar deslizamiento -->
+    <gazebo reference="left_wheel_link">
+        <mu1 value="1.5"/>
+        <mu2 value="1.5"/>
+        <kp value="100000.0"/>
+        <kd value="10.0"/>
+        <minDepth value="0.01"/>
+        <maxVel value="1.0"/>
+        <fdir1 value="1 0 0"/>
+    </gazebo>
+
+    <gazebo reference="right_wheel_link">
+        <mu1 value="1.5"/>
+        <mu2 value="1.5"/>
+        <kp value="100000.0"/>
+        <kd value="10.0"/>
+        <minDepth value="0.01"/>
+        <maxVel value="1.0"/>
+        <fdir1 value="1 0 0"/>
+    </gazebo>
+
 </robot>
