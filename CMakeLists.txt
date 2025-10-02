@@ -38,8 +38,8 @@ install(
 )
 
 install(PROGRAMS
-  scripts/twist_to_twiststamped.py
-  scripts/odom_relay.py
+  scripts/waypoint_follower.py
+  scripts/cmd_vel_relay.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
