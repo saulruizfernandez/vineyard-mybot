@@ -56,7 +56,7 @@ def main() -> None:
     navigator.waitUntilNav2Active()
 
     # If desired, you can change or load the map as well
-    navigator.changeMap(map_file)
+    # navigator.changeMap(map_file)  # Comentado porque el mapa ya está cargado por Nav2
 
     # You may use the navigator to clear or obtain costmaps
     # navigator.clearAllCostmaps()  # also have clearLocalCostmap() and clearGlobalCostmap()
@@ -79,10 +79,10 @@ def main() -> None:
     # path = navigator.getPath(initial_pose, goal_pose1)
 
     nav_start = navigator.get_clock().now()
-    follow_waypoints_task = navigator.followWaypoints(goal_poses)
+    navigator.followWaypoints(goal_poses)
 
     i = 0
-    while not navigator.isTaskComplete(task=follow_waypoints_task):
+    while not navigator.isTaskComplete():
         ################################################
         #
         # Implement some code here for your application!
@@ -91,7 +91,7 @@ def main() -> None:
 
         # Do something with the feedback
         i = i + 1
-        feedback = navigator.getFeedback(task=follow_waypoints_task)
+        feedback = navigator.getFeedback()
         if feedback and i % 5 == 0:
             print(
                 'Executing current waypoint: '
