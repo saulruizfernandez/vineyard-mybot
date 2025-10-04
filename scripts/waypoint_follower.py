@@ -26,7 +26,6 @@ import os
 package_name = 'vineyard-mybot'
 package_path = get_package_share_directory(package_name)
 waypoints_file = os.path.join(package_path, 'config', 'waypoints_nav2.json')
-map_file  = os.path.join(package_path, 'config', 'map_simulation.yaml')
 
 with open(waypoints_file, 'r') as json_file:
     navigation_data = json.load(json_file)
@@ -38,22 +37,25 @@ def main() -> None:
 
     navigator = BasicNavigator()
 
-    initial_pose = PoseStamped()
-    initial_pose.header.frame_id = 'map'
-    initial_pose.header.stamp = navigator.get_clock().now().to_msg()
-    initial_pose.pose.position.x = navigation_data[0]['x']
-    initial_pose.pose.position.y = navigation_data[0]['y']
-    initial_pose.pose.orientation.z = navigation_data[0]['orientation_z']
-    initial_pose.pose.orientation.w = navigation_data[0]['orientation_w']
-    navigator.setInitialPose(initial_pose)
-
-    # Activate navigation, if not autostarted. This should be called after setInitialPose()
-    # or this will initialize at the origin of the map and update the costmap with bogus readings.
-    # If autostart, you should `waitUntilNav2Active()` instead.
-    # navigator.lifecycleStartup()
+    # NO establecer pose inicial automáticamente - se debe hacer manualmente en RViz
+    # usando "2D Pose Estimate" para localizar correctamente el robot
+    
+    # initial_pose = PoseStamped()
+    # initial_pose.header.frame_id = 'map'
+    # initial_pose.header.stamp = navigator.get_clock().now().to_msg()
+    # initial_pose.pose.position.x = navigation_data[0]['x']
+    # initial_pose.pose.position.y = navigation_data[0]['y']
+    # initial_pose.pose.orientation.z = navigation_data[0]['orientation_z']
+    # initial_pose.pose.orientation.w = navigation_data[0]['orientation_w']
+    # navigator.setInitialPose(initial_pose)
 
     # Wait for navigation to fully activate, since autostarting nav2
     navigator.waitUntilNav2Active()
+    
+    # Esperar a que el usuario establezca la pose inicial en RViz
+    print("IMPORTANTE: Antes de continuar, establece la pose inicial del robot en RViz usando '2D Pose Estimate'")
+    print("Presiona Enter cuando hayas establecido la pose inicial...")
+    input()
 
     # If desired, you can change or load the map as well
     # navigator.changeMap(map_file)  # Comentado porque el mapa ya está cargado por Nav2
@@ -101,22 +103,23 @@ def main() -> None:
             )
             now = navigator.get_clock().now()
 
-            # Some navigation timeout to demo cancellation
-            if now - nav_start > Duration(seconds=600.0):
+            # Timeout más largo para dar tiempo al robot (10 minutos)
+            if now - nav_start > Duration(seconds=1200.0):
                 navigator.cancelTask()
+                print("Timeout alcanzado - cancelando navegación")
 
-            # Some follow waypoints request change to demo preemption
-            if now - nav_start > Duration(seconds=35.0):
-                goal_pose4 = PoseStamped()
-                goal_pose4.header.frame_id = 'map'
-                goal_pose4.header.stamp = now.to_msg()
-                goal_pose4.pose.position.x = 0.0
-                goal_pose4.pose.position.y = 0.0
-                goal_pose4.pose.orientation.w = 1.0
-                goal_pose4.pose.orientation.z = 0.0
-                goal_poses = [goal_pose4]
-                nav_start = now
-                follow_waypoints_task = navigator.followWaypoints(goal_poses)
+            # Comentamos la preemption que cambia el objetivo
+            # if now - nav_start > Duration(seconds=35.0):
+            #     goal_pose4 = PoseStamped()
+            #     goal_pose4.header.frame_id = 'map'
+            #     goal_pose4.header.stamp = now.to_msg()
+            #     goal_pose4.pose.position.x = 0.0
+            #     goal_pose4.pose.position.y = 0.0
+            #     goal_pose4.pose.orientation.w = 1.0
+            #     goal_pose4.pose.orientation.z = 0.0
+            #     goal_poses = [goal_pose4]
+            #     nav_start = now
+            #     follow_waypoints_task = navigator.followWaypoints(goal_poses)
 
     # Do something depending on the return code
     result = navigator.getResult()

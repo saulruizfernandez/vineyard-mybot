@@ -2,7 +2,9 @@ ros2 launch vineyard-mybot simulation.launch.py
 
 ros2 run vineyard-mybot cmd_vel_relay.py
 
-ros2 launch nav2_bringup bringup_launch.py use_sim_time:=true map:=/home/saul/mapa_sim_test.yaml
+rviz2
+
+ros2 launch nav2_bringup bringup_launch.py use_sim_time:=true map:=/home/saul/mapa_sim_test.yaml params_file:=/home/saul/vineyard_ws/src/vineyard-mybot/config/nav2_params.yaml
 
 ros2 run vineyard-mybot waypoint_follower.py
 
